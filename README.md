@@ -1,6 +1,6 @@
 # building-info
 
-Rejestr produktu, sprintu, itd. jest [tutaj](https://www.google.com)
+Rejestr produktu, sprintu, itd. jest [tutaj](https://docs.google.com/spreadsheets/d/1aDTQCKbAcoE8keDuq2KcZH5aJ1E5YINCDQJ0HzN18_k/edit?usp=sharing)
 
 Struktura danych:
 • Lokacja to budynek, poziom, lub pomieszczenie
