@@ -66,11 +66,11 @@ public class Room extends Location {
         this.heating = heating;
     }
 
-    public Float getLumens() {
+    public Float getLight() {
         return light;
     }
 
-    public void setLumens(Float light) {
+    public void setLight(Float light) {
         this.light = light;
     }
 }
