@@ -1,6 +1,6 @@
 package gryffindor.buildinginfo.models;
 
-public class Location {
+public abstract class Location {
 
     private Integer id;
     private String name;
@@ -9,6 +9,11 @@ public class Location {
         this.id = id;
         this.name = name;
     }
+
+    abstract Float getArea();
+    abstract Float getVolume();
+    abstract Float avgHeating();
+    abstract Float avgLight();
 
     public Integer getId() {
         return id;
