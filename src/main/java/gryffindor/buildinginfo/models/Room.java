@@ -1,5 +1,8 @@
 package gryffindor.buildinginfo.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Room extends Location {
 
     private Float x;
@@ -8,6 +11,22 @@ public class Room extends Location {
     private Float heating;
     private Float light;
 
+    public static Room readJSON(JSONObject json) throws JSONException {
+        Integer id = (Integer) json.get("id");
+
+        String name = null;
+        if(json.has("name")) {
+            name = (String) json.get("name");
+        }
+        System.out.println(json.get("x"));
+        Float x = Float.valueOf(Double.toString((Double )json.get("x")));
+        Float y = Float.valueOf(Double.toString((Double )json.get("y")));
+        Float height = Float.valueOf(Double.toString((Double )json.get("height")));
+        Float heating = Float.valueOf(Double.toString((Double )json.get("heating")));
+        Float light = Float.valueOf(Double.toString((Double )json.get("light")));
+
+        return new Room(id, name, x, y, height, heating, light);
+    }
 
     public Float getArea(){
         return this.x * this.y;
