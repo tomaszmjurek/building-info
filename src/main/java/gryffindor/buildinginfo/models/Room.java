@@ -5,9 +5,8 @@ import org.json.JSONObject;
 
 public class Room extends Location {
 
-    private Float x;
-    private Float y;
-    private Float height;
+    private Float area;
+    private Float volume;
     private Float heating;
     private Float light;
 
@@ -19,21 +18,20 @@ public class Room extends Location {
             name = (String) json.get("name");
         }
         System.out.println(json.get("x"));
-        Float x = Float.valueOf(Double.toString((Double )json.get("x")));
-        Float y = Float.valueOf(Double.toString((Double )json.get("y")));
-        Float height = Float.valueOf(Double.toString((Double )json.get("height")));
+        Float area = Float.valueOf(Double.toString((Double )json.get("area")));
+        Float volume = Float.valueOf(Double.toString((Double )json.get("volume")));
         Float heating = Float.valueOf(Double.toString((Double )json.get("heating")));
         Float light = Float.valueOf(Double.toString((Double )json.get("light")));
 
-        return new Room(id, name, x, y, height, heating, light);
+        return new Room(id, name, area, volume, heating, light);
     }
 
     public Float getArea(){
-        return this.x * this.y;
+        return this.area;
     }
 
     public Float getVolume(){
-        return this.x * this.y * this.height;
+        return this.volume;
     }
 
     public Float avgHeating(){
@@ -44,39 +42,22 @@ public class Room extends Location {
         return this.light / this.getVolume();
     }
 
-    public Room(Integer id, String name, Float x, Float y, Float height, Float heating, Float light){
+    public Room(Integer id, String name, Float area, Float volume, Float heating, Float light){
         super(id, name);
-        this.x = x;
-        this.y = y;
-        this.height = height;
+        this.area = area;
+        this.volume = volume;
         this.heating = heating;
         this.light = light;
     }
 
-    public Float getX() {
-        return x;
+    public void setArea(Float area) {
+        this.area = area;
     }
 
-    public void setX(Float x) {
-        this.x = x;
+    public void setVolume(Float volume) {
+        this.volume = volume;
     }
-
-    public Float getY() {
-        return y;
-    }
-
-    public void setY(Float y) {
-        this.y = y;
-    }
-
-    public Float getHeight() {
-        return height;
-    }
-
-    public void setHeight(Float height) {
-        this.height = height;
-    }
-
+    
     public Float getHeating() {
         return heating;
     }
