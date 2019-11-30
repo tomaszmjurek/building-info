@@ -6,6 +6,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Class Building represents 1 of 3 locations used in our application
+ * Building consists of floors
+ * Building is described by its own unique id and name
+ * @author Griffindor
+ */
 public class Building extends Location {
     public static Building readJSON(JSONObject json) throws JSONException {
         Integer id = (Integer) json.get("id");
@@ -37,10 +43,19 @@ public class Building extends Location {
         this.floors = floors;
     }
 
+    /**
+     * 
+     * @return list of floors in a current building
+     */
     public ArrayList<Floor> getFloors() {
         return floors;
     }
 
+    /**
+     * Function getArea() calculates area of a given building
+     * It sums areas of every floor that our building consists of
+     * @return area of building as float
+     */
     @Override
     public Float getArea() {
         Float sum = 0.0f;
@@ -51,6 +66,11 @@ public class Building extends Location {
         return sum;
     }
 
+    /**
+     * Function getVolume() calculates area of a given building
+     * It sums volumes of every floor that our building consists of
+     * @return volume of building as float
+     */
     @Override
     public Float getVolume() {
         Float sum = 0.0f;
@@ -61,6 +81,11 @@ public class Building extends Location {
         return sum;
     }
 
+    /**
+     * Function avgHeating() calculates the amount of enery used to heat the whole building
+     * It sums amounts of enery used to heat every floor that our building consists of
+     * @return heating energy as float
+     */
     @Override
     public Float avgHeating() {
         Float sum = 0.0f;
@@ -71,6 +96,11 @@ public class Building extends Location {
         return sum;
     }
 
+    /**
+     * Function avgLight() calculates the total lighting power used in the whole building
+     * It sums amounts of power used to light every floor that our building consists of
+     * @return total lighting power as float
+     */
     @Override
     public Float avgLight() {
         Float sum = 0.0f;

@@ -1,5 +1,11 @@
 package gryffindor.buildinginfo.models;
 
+/**
+ * Location is an abstract class
+ * Classes Building, Floor and Room inherit from Location
+ * Location has 2 fields - id and name
+ * @author Griffindor
+ */
 public abstract class Location {
 
     private Integer id;
@@ -15,18 +21,34 @@ public abstract class Location {
     abstract Float avgHeating();
     abstract Float avgLight();
 
+    /**
+     * 
+     * @return id of a location
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * 
+     * @return name of a location
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * 
+     * @param id - id of a location
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * 
+     * @param name - name of a location
+     */
     public void setName(String name) {
         this.name = name;
     }

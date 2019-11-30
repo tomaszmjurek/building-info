@@ -6,7 +6,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Class Floor represents 1 of 3 locations used in our application
+ * Floor consists of Rooms
+ * Every Floor is described by its own unique id and name
+ * @author Griffindor
+ */
 public class Floor extends Location {
+
     public static Floor readJSON(JSONObject json) throws JSONException {
         Integer id = (Integer) json.get("id");
 
@@ -36,10 +43,19 @@ public class Floor extends Location {
         this.rooms = rooms;
     }
 
+    /**
+     * 
+     * @return list of rooms in a current floor
+     */
     public ArrayList<Room> getRooms() {
         return rooms;
     }
 
+    /**
+     * Function getArea() calculates the total area of a floor
+     * It sums areas of every room that the floor consists of
+     * @return area of floor as float
+     */
     @Override
     public Float getArea() {
         Float sum = 0.0f;
@@ -50,7 +66,12 @@ public class Floor extends Location {
 
         return sum;
     }
-
+    
+    /**
+     * Function getVolume() calculates the total volume of a floor
+     * It sums volumes of every room that the floor consists of
+     * @return volume of floor as float
+     */
     @Override
     public Float getVolume() {
         Float sum = 0.0f;
@@ -62,6 +83,11 @@ public class Floor extends Location {
         return sum;
     }
 
+    /**
+     * Function getHeating() calculates the level of heating energy consumption
+     * It sums energy used to heat every room that the floor consists of
+     * @return heating energy as float
+     */
     @Override
     public Float avgHeating() {
         Float sum = 0.0f;
@@ -72,7 +98,12 @@ public class Floor extends Location {
 
         return sum;
     }
-
+    
+    /**
+     * Function avgLight() calculates the total lighting power used in the whole floor
+     * It sums amounts of power used to light every room that our floor consists of
+     * @return total lighting power as float
+     */
     @Override
     public Float avgLight() {
         Float sum = 0.0f;

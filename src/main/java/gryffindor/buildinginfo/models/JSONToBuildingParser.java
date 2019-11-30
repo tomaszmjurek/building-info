@@ -7,7 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-
+/**
+ * Class that parses json into building class
+ * @author Griffindor
+ */
 public class JSONToBuildingParser {
     public static ArrayList<Building> getBuildings(String json) throws JSONException {
         ArrayList<Building> parsedBuildings = new ArrayList<>();
