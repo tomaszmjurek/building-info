@@ -26,7 +26,7 @@ public class Room extends Location {
         if(json.has("name")) {
             name = (String) json.get("name");
         }
-        System.out.println(json.get("x"));
+        
         Float area = Float.valueOf(Double.toString((Double )json.get("area")));
         Float volume = Float.valueOf(Double.toString((Double )json.get("volume")));
         Float heating = Float.valueOf(Double.toString((Double )json.get("heating")));
