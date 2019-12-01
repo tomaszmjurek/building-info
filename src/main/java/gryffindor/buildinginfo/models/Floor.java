@@ -85,15 +85,17 @@ public class Floor extends Location {
 
     /**
      * Function getHeating() calculates the level of heating energy consumption
-     * It sums energy used to heat every room that the floor consists of
-     * @return heating energy as float
+     * It sums energy used to heat every room that the floor consists of and divides it by total area of a floor
+     * @return heating energy per m^3 as float
      */
     @Override
     public Float avgHeating() {
         Float sum = 0.0f;
+        Float volume = 0.0f;
 
         for(Room room : rooms) {
-            sum += room.getHeating();
+            sum += room.avgHeating();
+            volume += room.getVolume();
         }
 
         return sum;
@@ -101,17 +103,20 @@ public class Floor extends Location {
     
     /**
      * Function avgLight() calculates the total lighting power used in the whole floor
-     * It sums amounts of power used to light every room that our floor consists of
-     * @return total lighting power as float
+     * It sums amounts of power used to light every room that our floor consists of and divides it by total area of the floor
+     * @return total lighting power per m^2 as float
      */
     @Override
     public Float avgLight() {
         Float sum = 0.0f;
+        Float area = 0.0f;
 
         for(Room room : rooms) {
             sum += room.avgLight();
+            area += room.getArea();
+            
         }
 
-        return sum;
+        return sum/area;
     }
 }

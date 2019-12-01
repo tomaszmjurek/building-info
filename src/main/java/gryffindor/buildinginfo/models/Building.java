@@ -83,14 +83,16 @@ public class Building extends Location {
 
     /**
      * Function avgHeating() calculates the amount of enery used to heat the whole building
-     * It sums amounts of enery used to heat every floor that our building consists of
-     * @return heating energy as float
+     * It sums amounts of enery used to heat every floor that our building consists of and divides it by total area of a building
+     * @return heating energy per m^3 as float
      */
     @Override
     public Float avgHeating() {
         Float sum = 0.0f;
+        Float volume = 0.0f;
         for(Floor floor : floors) {
-            sum += floor.avgHeating();
+            sum += floor.avgHeating()*floor.avgLight();
+            volume += floor.getVolume();
         }
 
         return sum;
@@ -98,16 +100,18 @@ public class Building extends Location {
 
     /**
      * Function avgLight() calculates the total lighting power used in the whole building
-     * It sums amounts of power used to light every floor that our building consists of
-     * @return total lighting power as float
+     * It sums amounts of power used to light every floor that our building consists of and divides it by total area of a building
+     * @return total lighting power per m^2 as float
      */
     @Override
     public Float avgLight() {
         Float sum = 0.0f;
+        Float area = 0.0f;
         for(Floor floor : floors) {
-            sum += floor.avgLight();
+        	sum += floor.getArea()*floor.avgLight();
+            area += floor.getArea();
         }
 
-        return sum;
+        return sum/area;
     }
 }
