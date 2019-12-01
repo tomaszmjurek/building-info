@@ -13,9 +13,8 @@
 					"rooms": [
 						{
 							"id": 31,
-							"x": 1.0,
-							"y": 2.0,
-							"height": 3.0,
+							"area": 2.0,
+							"volume": 6.0,
 							"heating": 4.0,
 							"light": 5.0
 						}
@@ -26,9 +25,8 @@
 					"rooms": [
 						{
 							"id": 32,
-							"x": 6.0,
-							"y": 7.0,
-							"height": 8.0,
+							"area": 42.0,
+							"volume": 336.0,
 							"heating": 9.0,
 							"light": 10.0
 						}
@@ -45,9 +43,8 @@
 					"rooms": [
 						{
 							"id": 33,
-							"x": 1.0,
-							"y": 2.0,
-							"height": 3.0,
+							"area": 2.0,
+							"volume": 6.0,
 							"heating": 4.0,
 							"light": 5.0
 						}
@@ -58,9 +55,8 @@
 					"rooms": [
 						{
 							"id": 34,
-							"x": 6.0,
-							"y": 7.0,
-							"height": 8.0,
+							"area": 42.0,
+							"volume": 336.0,
 							"heating": 9.0,
 							"light": 10.0
 						}
