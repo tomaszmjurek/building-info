@@ -136,6 +136,29 @@ public class Main {
         return response;
     }
 
+    @PostMapping("/getVolume")
+	public Map<String, Object> getVolume(@RequestBody String json){
+		Map<String, Object> response = new HashMap<>();
+
+		ArrayList<Building> buildings = null;
+		try{
+			buildings = JSONToBuildingParser.getBuildings(json);
+			logger.info("Building parsed from json");
+		} catch (JSONException e){
+			e.printStackTrace();
+		}
+
+		if(buildings == null) response.put("error", "error");
+		else{
+			Float sum = 0.0f;
+			for(Building building: buildings){
+				sum += building.getVolume();
+			}
+			logger.debug("Volume: {}", sum);
+			response.put("volume", sum);
+		}
+		return response;
+	}
 	/**
 	 * Example Request Json Structure
 	 * 
