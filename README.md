@@ -68,3 +68,6 @@
 ]
 }
 ```
+
+
+![Build status](https://travis-ci.org/Dominos1234/building-info.svg?branch=develop)
