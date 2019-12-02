@@ -2,6 +2,7 @@ package gryffindor.buildinginfo.controllers;
 
 import gryffindor.buildinginfo.models.Building;
 import gryffindor.buildinginfo.models.JSONToBuildingParser;
+import gryffindor.buildinginfo.models.Room;
 import org.json.JSONException;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,12 +10,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * REST Controller class
  * It enables web service communication
  */
 @RestController
 public class Main {
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
 
     @RequestMapping("/healthcheck")
     public Map<String, Object> healthcheck(){
@@ -101,13 +108,14 @@ public class Main {
 	*  URL: 127.0.0.1:8080/getArea
 	*
 	**/
-    @PostMapping(value="/getArea")
+    @PostMapping("/getArea")
     public Map<String, Object> getArea(@RequestBody String json ) {
         Map<String, Object> response = new HashMap<>();
 
         ArrayList<Building> buildings = null;
         try {
             buildings = JSONToBuildingParser.getBuildings(json);
+            logger.info("Building parsed from json");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -119,6 +127,7 @@ public class Main {
             Float sum = 0.0f;
             for(Building building : buildings) {
                 sum += building.getArea();
+                logger.debug("Area sum changed to {}", sum);
             }
 
             response.put("area", sum);
@@ -204,13 +213,14 @@ public class Main {
 	* URL: 127.0.0.1:8080/avgLight
 	*
 	**/
-    @PostMapping(value="/avgLight")
+    @PostMapping("/avgLight")
     public Map<String, Object> avgLight(@RequestBody String json ) {
         Map<String, Object> response = new HashMap<>();
 
         ArrayList<Building> buildings = null;
         try {
             buildings = JSONToBuildingParser.getBuildings(json);
+            logger.info("Building parsed from json");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -222,6 +232,7 @@ public class Main {
             Float sum = 0.0f;
             for(Building building : buildings) {
                 sum += building.avgLight();
+                logger.debug("Average light sum changed to {}", sum);
             }
 
             response.put("light", sum);
