@@ -33,7 +33,10 @@ class RoomTest {
 
             test_room = Room.readJSON(json);
         }
-        catch(Exception e){ e.getCause(); }
+        catch(Exception e){
+            e.getCause();
+            fail();
+        }
 
         assertEquals(2, test_room.getId());
         assertEquals("Test room", test_room.getName());
