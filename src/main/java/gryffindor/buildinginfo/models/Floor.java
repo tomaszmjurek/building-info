@@ -90,17 +90,9 @@ public class Floor extends Location {
      */
     @Override
     public Float avgHeating() {
-        Float sum = 0.0f;
-        Float volume = 0.0f;
-
-        for(Room room : rooms) {
-            sum += room.getHeating();
-            volume += room.getVolume();
-        }
-
-        return sum/volume;
+        return this.getHeating() / this.getVolume();
     }
-    
+
     /**
      * Function avgLight() calculates the total lighting power used in the whole floor
      * It sums amounts of power used to light every room that our floor consists of and divides it by total area of the floor
@@ -108,16 +100,7 @@ public class Floor extends Location {
      */
     @Override
     public Float avgLight() {
-        Float sum = 0.0f;
-        Float area = 0.0f;
-
-        for(Room room : rooms) {
-            sum += room.getLight();
-            area += room.getArea();
-
-        }
-
-        return sum/area;
+        return this.getLight() / this.getArea();
     }
 
     @Override
