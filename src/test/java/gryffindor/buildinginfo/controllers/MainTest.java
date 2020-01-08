@@ -2,7 +2,7 @@ package gryffindor.buildinginfo.controllers;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +27,17 @@ class MainTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private JSONObject json_building;
+    private JSONObject json;
 
-    @Before
+    @BeforeEach
     void setup() {
         JSONArray json_floors = new JSONArray();
         JSONObject json_floor = new JSONObject();
         JSONObject json_room = new JSONObject();
         JSONArray json_rooms = new JSONArray();
+        JSONObject json_building = new JSONObject();
+        JSONArray json_buildings = new JSONArray();
+        JSONObject json_final = new JSONObject();
         try {
             json_room.put("id", 2);
             json_room.put("name", "Test room");
@@ -51,9 +54,14 @@ class MainTest {
 
             json_floors.put(json_floor);
 
-            this.json_building.put("id", 20);
-            this.json_building.put("name", "Testowy budyneczek");
-            this.json_building.put("floors", json_floors);
+            json_building.put("id", 20);
+            json_building.put("name", "Testowy budyneczek");
+            json_building.put("floors", json_floors);
+
+            json_buildings.put(json_building);
+
+            json_final.put("buildings", json_buildings);
+            this.json = json_final;
 
         } catch (Exception e) {
             e.getCause();
@@ -75,4 +83,35 @@ class MainTest {
                 .andExpect(content().json("{'status':'ok'}"));
     }
 
+    @Test
+    void getArea() throws Exception {
+        this.mockMvc.perform(post("/getArea")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'area': 10.0}"));
+    }
+
+    @Test
+    void getVolume() throws Exception {
+        this.mockMvc.perform(post("/getVolume")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'volume': 25.0}"));
+    }
+
+    @Test
+    void avgLight() throws Exception {
+        this.mockMvc.perform(post("/avgLight")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'light': 5.0}"));
+    }
+
+    @Test
+    void avgHeating() throws Exception {
+        this.mockMvc.perform(post("/avgHeating")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'heating': 0.4}"));
+    }
 }
