@@ -88,14 +88,7 @@ public class Building extends Location {
      */
     @Override
     public Float avgHeating() {
-        Float sum = 0.0f;
-        Float volume = 0.0f;
-        for(Floor floor : floors) {
-            sum += floor.avgHeating()*floor.avgLight();
-            volume += floor.getVolume();
-        }
-
-        return sum;
+        return this.getHeating() / this.getVolume();
     }
 
     /**
@@ -105,14 +98,7 @@ public class Building extends Location {
      */
     @Override
     public Float avgLight() {
-        Float sum = 0.0f;
-        Float area = 0.0f;
-        for(Floor floor : floors) {
-        	sum += floor.getArea()*floor.avgLight();
-            area += floor.getArea();
-        }
-
-        return sum/area;
+        return this.getLight() / this.getArea();
     }
 
     @Override
