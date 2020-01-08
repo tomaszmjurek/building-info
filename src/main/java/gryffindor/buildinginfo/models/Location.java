@@ -20,8 +20,6 @@ public abstract class Location {
     abstract Float getVolume();
     abstract Float avgHeating();
     abstract Float avgLight();
-    abstract Float getHeating();
-    abstract Float getLight();
 
     /**
      * 

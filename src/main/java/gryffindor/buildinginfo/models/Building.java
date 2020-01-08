@@ -114,22 +114,4 @@ public class Building extends Location {
 
         return sum/area;
     }
-
-    @Override
-    public Float getHeating(){
-        Float sum = 0.0f;
-        for(Floor floor : this.floors){
-            sum += floor.getHeating();
-        }
-        return sum;
-    }
-
-    @Override
-    public Float getLight(){
-        Float sum = 0.0f;
-        for(Floor floor : this.floors){
-            sum += floor.getLight();
-        }
-        return sum;
-    }
 }
