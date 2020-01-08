@@ -28,7 +28,7 @@ class BuildingTest {
                 new Float(40),
                 new Float(30),
                 new Float(60));
-        Room room2 = new Room(3 , "Room3",
+        Room room3 = new Room(3 , "Room3",
                 new Float(10),
                 new Float(20),
                 new Float(30),
@@ -43,10 +43,11 @@ class BuildingTest {
 
         floor1 = new Floor(4, "Pietro1", rooms);
         floor2 = new Floor(5,"Pietro2", rooms2);
-        
-     
+
         ArrayList<Floor> floors = new ArrayList<>();
         floors.add(floor1); floors.add(floor2);
+
+        building = new Building(6, "Budyneczek", floors);
         
     }
 
@@ -79,8 +80,8 @@ class BuildingTest {
             json_floors.put(json_floor);
             
             json_building.put("id",20);
-            json_floor.put("name", "Testowy budyneczek");
-            json_floor.put("floors", json_floors);
+            json_building.put("name", "Testowy budyneczek");
+            json_building.put("floors", json_floors);
             
             building = Building.readJSON(json_building);
 
