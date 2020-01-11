@@ -1,0 +1,7 @@
+gryffindor\buildinginfo\models\Building.class
+gryffindor\buildinginfo\models\Location.class
+gryffindor\buildinginfo\models\Room.class
+gryffindor\buildinginfo\models\Floor.class
+gryffindor\buildinginfo\controllers\Main.class
+gryffindor\buildinginfo\BuildinginfoApplication.class
+gryffindor\buildinginfo\models\JSONToBuildingParser.class
