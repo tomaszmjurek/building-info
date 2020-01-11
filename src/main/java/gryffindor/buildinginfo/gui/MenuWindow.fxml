@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="688.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gryffindor.buildinginfo.gui.Controller">
+   <children>
+      <VBox fx:id="buildingBox" layoutX="182.0" layoutY="14.0" prefHeight="410.0" prefWidth="170.0" spacing="15.0" visible="false">
+         <children>
+            <Label prefHeight="17.0" prefWidth="170.0" text="Building" textAlignment="CENTER" />
+            <Label fx:id="buildingName" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="buildingID" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="buildingHeating" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="buildingLight" prefHeight="18.0" prefWidth="170.0" />
+            <ListView fx:id="floorList" onMouseClicked="#selectFloor" prefHeight="201.0" prefWidth="170.0" />
+            <Button fx:id="newFloor" mnemonicParsing="false" onAction="#newFloor" prefHeight="25.0" prefWidth="101.0" text="New Floor" />
+            <Button fx:id="editBuilding" mnemonicParsing="false" onAction="#editBuilding" prefHeight="25.0" prefWidth="145.0" text="Edit Building" />
+            <Button fx:id="deleteBuilding" mnemonicParsing="false" onAction="#deleteBuilding" prefHeight="25.0" prefWidth="146.0" text="Delete Building" />
+         </children>
+      </VBox>
+      <VBox fx:id="floorBox" layoutX="367.0" layoutY="14.0" prefHeight="410.0" prefWidth="170.0" spacing="15.0" visible="false">
+         <children>
+            <Label prefHeight="17.0" prefWidth="170.0" text="Floor" textAlignment="CENTER" />
+            <Label fx:id="floorName" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="floorID" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="floorHeating" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="floorLight" prefHeight="18.0" prefWidth="170.0" />
+            <ListView fx:id="roomList" onMouseClicked="#selectRoom" prefHeight="201.0" prefWidth="170.0" />
+            <Button fx:id="newRoom" mnemonicParsing="false" onAction="#newRoom" prefHeight="25.0" prefWidth="101.0" text="New Room" textAlignment="CENTER" />
+            <Button fx:id="editFloor" mnemonicParsing="false" onAction="#editFloor" prefHeight="25.0" prefWidth="101.0" text="Edit Floor" />
+            <Button fx:id="deleteFloor" mnemonicParsing="false" onAction="#deleteFloor" prefHeight="25.0" prefWidth="101.0" text="Delete Floor" />
+         </children>
+      </VBox>
+      <VBox fx:id="roomBox" layoutX="575.0" layoutY="14.0" prefHeight="410.0" prefWidth="170.0" spacing="15.0" visible="false">
+         <children>
+            <Label prefHeight="17.0" prefWidth="170.0" text="Room" textAlignment="CENTER" />
+            <Label fx:id="roomName" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="roomID" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="roomHeating" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="roomLight" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="roomVolume" prefHeight="18.0" prefWidth="170.0" />
+            <Label fx:id="roomArea" layoutX="10.0" layoutY="109.0" prefHeight="18.0" prefWidth="170.0" />
+            <Button fx:id="editRoom" mnemonicParsing="false" onAction="#editRoom" prefHeight="25.0" prefWidth="101.0" text="Edit Room" textAlignment="CENTER" />
+            <Button fx:id="deleteRoom" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="25.0" prefWidth="101.0" text="Delete Room" textAlignment="CENTER" />
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="410.0" prefWidth="144.0" spacing="15.0">
+         <children>
+            <ListView fx:id="buildingList" onMouseClicked="#selectBuilding" prefHeight="249.0" prefWidth="139.0" />
+            <Button fx:id="newBuilding" mnemonicParsing="false" onAction="#newBuilding" prefHeight="25.0" prefWidth="145.0" text="New Building" />
+         </children>
+      </VBox>
+      <HBox layoutX="11.0" layoutY="478.0" prefHeight="95.0" prefWidth="723.0">
+         <children>
+            <VBox fx:id="v1" prefHeight="93.0" prefWidth="119.0" visible="false">
+               <children>
+                  <Label fx:id="q1" prefHeight="28.0" prefWidth="170.0" />
+                  <TextField fx:id="a1" />
+               </children>
+            </VBox>
+            <VBox fx:id="v2" layoutX="10.0" layoutY="10.0" prefHeight="93.0" prefWidth="119.0" visible="false">
+               <children>
+                  <Label fx:id="q2" prefHeight="28.0" prefWidth="170.0" />
+                  <TextField fx:id="a2" />
+               </children>
+            </VBox>
+            <VBox fx:id="v3" layoutX="129.0" layoutY="10.0" prefHeight="93.0" prefWidth="119.0" visible="false">
+               <children>
+                  <Label fx:id="q3" prefHeight="28.0" prefWidth="170.0" />
+                  <TextField fx:id="a3" />
+               </children>
+            </VBox>
+            <VBox fx:id="v4" layoutX="248.0" layoutY="10.0" prefHeight="93.0" prefWidth="119.0" visible="false">
+               <children>
+                  <Label fx:id="q4" prefHeight="28.0" prefWidth="170.0" />
+                  <TextField fx:id="a4" />
+               </children>
+            </VBox>
+            <VBox fx:id="v5" layoutX="367.0" layoutY="10.0" prefHeight="93.0" prefWidth="119.0" visible="false">
+               <children>
+                  <Label fx:id="q5" prefHeight="28.0" prefWidth="170.0" />
+                  <TextField fx:id="a5" />
+               </children>
+            </VBox>
+            <VBox fx:id="v6" layoutX="486.0" layoutY="10.0" prefHeight="93.0" prefWidth="119.0" visible="false">
+               <children>
+                  <Label fx:id="q6" prefHeight="28.0" prefWidth="170.0" />
+                  <TextField fx:id="a6" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox fx:id="deleteV" layoutX="211.0" layoutY="424.0" prefHeight="59.0" prefWidth="342.0" visible="false">
+         <children>
+            <Label fx:id="delete" prefHeight="27.0" prefWidth="340.0" />
+            <HBox prefHeight="28.0" prefWidth="113.0" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#deleteY" prefHeight="25.0" prefWidth="55.0" text="Yes" />
+                  <Button mnemonicParsing="false" onAction="#deleteN" prefHeight="25.0" prefWidth="52.0" text="No" />
+               </children>
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox layoutX="252.0" layoutY="580.0" prefHeight="78.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="acceptBuilding" mnemonicParsing="false" onAction="#editBuilding2" text="Accept changes" visible="false" />
+                  <Button fx:id="acceptFloor" mnemonicParsing="false" onAction="#editFloor2" text="Accept changes" visible="false" />
+                  <Button fx:id="acceptRoom" mnemonicParsing="false" onAction="#editRoom2" text="Accept changes" visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="acceptNewBuilding" mnemonicParsing="false" onAction="#newBuilding2" text="Create New Building" visible="false" />
+                  <Button fx:id="acceptNewFloor" mnemonicParsing="false" onAction="#newFloor2" text="Create New Floor" visible="false" />
+                  <Button fx:id="acceptNewRoom" mnemonicParsing="false" onAction="#newRoom2" text="Create New Room" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
