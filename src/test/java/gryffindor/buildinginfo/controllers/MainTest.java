@@ -43,8 +43,17 @@ class MainTest {
             json_room.put("name", "Test room");
             json_room.put("area", new Float(10));
             json_room.put("volume", new Float(25));
-            json_room.put("heating", new Float(10));
-            json_room.put("light", new Float(50));
+            json_room.put("heating", new Float(25));
+            json_room.put("light", new Float(60));
+
+            json_rooms.put(json_room);
+
+            json_room.put("id", 4);
+            json_room.put("name", "Test room 2");
+            json_room.put("area", new Float(15));
+            json_room.put("volume", new Float(30));
+            json_room.put("heating", new Float(30));
+            json_room.put("light", new Float(40));
 
             json_rooms.put(json_room);
 
@@ -84,34 +93,66 @@ class MainTest {
     }
 
     @Test
-    void getArea() throws Exception {
-        this.mockMvc.perform(post("/getArea")
+    void getAreaAll() throws Exception {
+        this.mockMvc.perform(post("/getArea?0")
                 .content(this.json.toString()))
                 .andDo(print())
-                .andExpect(content().json("{'area': 10.0}"));
+                .andExpect(content().json("{'area': 25.0}"));
     }
 
     @Test
-    void getVolume() throws Exception {
-        this.mockMvc.perform(post("/getVolume")
+    void getAreaFloor() throws Exception {
+        this.mockMvc.perform(post("/getArea?10")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'area': 25.0}"));
+    }
+
+    @Test
+    void getVolumeAll() throws Exception {
+        this.mockMvc.perform(post("/getVolume?0")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'volume': 55.0}"));
+    }
+
+    @Test
+    void getVolumeRoom() throws Exception {
+        this.mockMvc.perform(post("/getVolume?3")
                 .content(this.json.toString()))
                 .andDo(print())
                 .andExpect(content().json("{'volume': 25.0}"));
     }
 
     @Test
-    void avgLight() throws Exception {
-        this.mockMvc.perform(post("/avgLight")
+    void avgLightAll() throws Exception {
+        this.mockMvc.perform(post("/avgLight?0")
                 .content(this.json.toString()))
                 .andDo(print())
-                .andExpect(content().json("{'light': 5.0}"));
+                .andExpect(content().json("{'light': 4.0}"));
     }
 
     @Test
-    void avgHeating() throws Exception {
-        this.mockMvc.perform(post("/avgHeating")
+    void avgLightRoom() throws Exception {
+        this.mockMvc.perform(post("/avgLight?3")
                 .content(this.json.toString()))
                 .andDo(print())
-                .andExpect(content().json("{'heating': 0.4}"));
+                .andExpect(content().json("{'light': 6.0}"));
+    }
+
+    @Test
+    void avgHeatingBuilding() throws Exception {
+        this.mockMvc.perform(post("/avgHeating?20")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'heating': 1.0}"));
+    }
+
+    @Test
+    void avgHeatingRoom() throws Exception {
+        this.mockMvc.perform(post("/avgHeating?4")
+                .content(this.json.toString()))
+                .andDo(print())
+                .andExpect(content().json("{'heating': 1.0}"));
     }
 }
