@@ -34,7 +34,7 @@ public class Floor extends Location {
 
     private ArrayList<Room> rooms = new ArrayList<>();
 
-    public Floor(Integer id, String name) {
+    Floor(Integer id, String name) {
         super(id, name);
     }
 

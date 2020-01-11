@@ -72,10 +72,12 @@ public class Controller implements Initializable{
 	public TextField a1,a2,a3,a4,a5,a6;
 
 	
-	public List <VBox> fields = new ArrayList<>();
-	public List <Button> buttons = new ArrayList<>();
-	public List <Floor> floors = new ArrayList<>();
-	public List <Room> rooms = new ArrayList<>();
+	public ArrayList <VBox> fields = new ArrayList<>();
+	public ArrayList <Button> buttons = new ArrayList<>();
+	public ArrayList <Floor> floors = new ArrayList<>();
+	public ArrayList <Floor> emptyFloors = new ArrayList<>();
+	public ArrayList <Room> rooms = new ArrayList<>();
+	public ArrayList <Room> emptyRooms = new ArrayList<>();
 	public int currentBuildingIndex;
 	public int currentFloorIndex;
 	public int currentRoomIndex;
@@ -110,7 +112,7 @@ public class Controller implements Initializable{
 		
 		acceptNewBuilding.setVisible(false);
 		
-		Building building = new Building(0,"");
+		Building building = new Building(0,"",emptyFloors);
 		
 		building.setName(a1.getText());
 		building.setId(Integer.parseInt(a2.getText()));
@@ -188,7 +190,7 @@ public class Controller implements Initializable{
 		
 		acceptNewFloor.setVisible(false);
 		
-		Floor floor = new Floor(0,"");
+		Floor floor = new Floor(0,"",emptyRooms);
 		
 		floor.setName(a1.getText());
 		floor.setId(Integer.parseInt(a2.getText()));
@@ -364,7 +366,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void selectBuilding() {
 		String name=(String) buildingList.getSelectionModel().getSelectedItem();
-		Building building = new Building(0,"");
+		Building building = new Building(0,"",emptyFloors);
 		
 		for (int i=0;i<MenuWindow.buildings.size();i++)
 		{
@@ -397,7 +399,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void selectFloor() {
 		String name=(String) floorList.getSelectionModel().getSelectedItem();
-		Floor floor = new Floor(0,"");
+		Floor floor = new Floor(0,"",emptyRooms);
 		
 		for (int i=0;i<floors.size();i++)
 		{
