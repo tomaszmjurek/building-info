@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * Building is described by its own unique id and name
  * @author Griffindor
  */
-public class Building extends Location {
+public class Building extends Location implements Serializable {
     public static Building readJSON(JSONObject json) throws JSONException {
         Integer id = (Integer) json.get("id");
 
@@ -49,6 +50,10 @@ public class Building extends Location {
      */
     public ArrayList<Floor> getFloors() {
         return floors;
+    }
+    
+    public void setFloors(ArrayList<Floor> floors) {
+        this.floors = floors;
     }
 
     /**

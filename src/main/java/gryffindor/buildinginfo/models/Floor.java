@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * Every Floor is described by its own unique id and name
  * @author Griffindor
  */
-public class Floor extends Location {
+public class Floor extends Location implements Serializable {
 
     public static Floor readJSON(JSONObject json) throws JSONException {
         Integer id = (Integer) json.get("id");
@@ -51,6 +52,9 @@ public class Floor extends Location {
         return rooms;
     }
 
+    public void setRooms(ArrayList<Room> rooms) {
+        this.rooms = rooms;
+    }
     /**
      * Function getArea() calculates the total area of a floor
      * It sums areas of every room that the floor consists of

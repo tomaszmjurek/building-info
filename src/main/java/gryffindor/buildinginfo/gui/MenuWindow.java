@@ -1,6 +1,11 @@
 package gryffindor.buildinginfo.gui;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,44 +31,25 @@ public class MenuWindow extends Application {
     
     public static List <Building> buildings = new ArrayList<>();
     
-    @Override
+	@Override
     public void start(Stage primaryStage) throws Exception {
     	
-    	Building building;
-		Floor floor1;
-		Floor floor2;
-		Room room1 = new Room(1 , "Room1",
-                new Float(10),
-                new Float(25),
-                new Float(10),
-                new Float(50));
-        Room room2 = new Room(2 , "Room2",
-                new Float(20),
-                new Float(40),
-                new Float(30),
-                new Float(60));
-        Room room3 = new Room(3 , "Room3",
-                new Float(10),
-                new Float(20),
-                new Float(30),
-                new Float(20));
-
-        ArrayList<Room> rooms = new ArrayList<>();
-        rooms.add(room1); rooms.add(room2);
+		System.out.println(System.getProperty("user.dir"));
+    	ObjectInputStream in = new ObjectInputStream( 
+                new FileInputStream("save.txt"));
         
-        ArrayList<Room> rooms2 = new ArrayList<>();
-        rooms.add(room3);
+    	BufferedReader br = new BufferedReader(new FileReader(("save.txt")));     
+        if (br.readLine() == null) {
+        	in.close(); 
+        }
+        else {
+        	buildings = (ArrayList<Building>) in.readObject();
+        	in.close(); 
+        }
+        br.close();
         
-
-        floor1 = new Floor(4, "Pietro1", rooms);
-        floor2 = new Floor(5,"Pietro2", rooms2);
-
-        ArrayList<Floor> floors = new ArrayList<>();
-        floors.add(floor1); floors.add(floor2);
-
-        building = new Building(6, "Budyneczek", floors);
-		
-        buildings.add(building);
+        System.out.println(buildings.get(0).getFloors());
+        System.out.println(buildings.get(1).getFloors());
     	
         Parent root = FXMLLoader.load(getClass().getResource("MenuWindow.fxml"));
         primaryStage.setTitle("Hello World!");
@@ -71,4 +57,5 @@ public class MenuWindow extends Application {
         primaryStage.show();
         
     }
+    
 }

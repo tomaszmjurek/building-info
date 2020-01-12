@@ -54,6 +54,7 @@
          <children>
             <ListView fx:id="buildingList" onMouseClicked="#selectBuilding" prefHeight="249.0" prefWidth="139.0" />
             <Button fx:id="newBuilding" mnemonicParsing="false" onAction="#newBuilding" prefHeight="25.0" prefWidth="145.0" text="New Building" />
+            <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="149.0" text="Save current state" />
          </children>
       </VBox>
       <HBox layoutX="11.0" layoutY="478.0" prefHeight="95.0" prefWidth="723.0">
@@ -110,16 +111,16 @@
             </HBox>
          </children>
       </VBox>
-      <HBox layoutX="252.0" layoutY="580.0" prefHeight="78.0" prefWidth="200.0">
+      <HBox layoutX="221.0" layoutY="580.0" prefHeight="78.0" prefWidth="316.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="78.0" prefWidth="156.0">
                <children>
                   <Button fx:id="acceptBuilding" mnemonicParsing="false" onAction="#editBuilding2" text="Accept changes" visible="false" />
                   <Button fx:id="acceptFloor" mnemonicParsing="false" onAction="#editFloor2" text="Accept changes" visible="false" />
                   <Button fx:id="acceptRoom" mnemonicParsing="false" onAction="#editRoom2" text="Accept changes" visible="false" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="78.0" prefWidth="157.0">
                <children>
                   <Button fx:id="acceptNewBuilding" mnemonicParsing="false" onAction="#newBuilding2" text="Create New Building" visible="false" />
                   <Button fx:id="acceptNewFloor" mnemonicParsing="false" onAction="#newFloor2" text="Create New Floor" visible="false" />

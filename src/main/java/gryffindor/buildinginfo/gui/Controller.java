@@ -1,6 +1,10 @@
 package gryffindor.buildinginfo.gui;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Controller implements Initializable{
@@ -112,14 +115,13 @@ public class Controller implements Initializable{
 		
 		acceptNewBuilding.setVisible(false);
 		
-		Building building = new Building(0,"",emptyFloors);
+		Building building = new Building(0,"",new ArrayList<>());
 		
 		building.setName(a1.getText());
 		building.setId(Integer.parseInt(a2.getText()));
 		
 		MenuWindow.buildings.add(building);
-		
-		
+
 		loadBuildings();
 	}
 	@FXML
@@ -194,8 +196,9 @@ public class Controller implements Initializable{
 		
 		floor.setName(a1.getText());
 		floor.setId(Integer.parseInt(a2.getText()));
-		
+
 		MenuWindow.buildings.get(currentBuildingIndex).getFloors().add(floor);
+
 
 		floorList.getItems().clear();
 		floorList.getItems().add(floor.getName()+", id: "+floor.getId());
@@ -334,11 +337,11 @@ public class Controller implements Initializable{
 		a6.setPromptText(Float.toString(rooms.get(currentRoomIndex).getVolume()));
 	}
 	@FXML
-	public void editRoom2() {
+	public void editRoom2() throws IOException, ClassNotFoundException, NumberFormatException{
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(false);
 		acceptRoom.setVisible(false);
-		
+
 		if(!a1.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).setName(a1.getText());
 		if(!a2.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).setId(Integer.parseInt(a2.getText()));
 		if(!a3.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).setLight(Float.parseFloat(a3.getText()));
@@ -386,9 +389,9 @@ public class Controller implements Initializable{
 		floors = building.getFloors();
 		List <String> names = new ArrayList<>();
 		
-		for (int i=0;i<floors.size();i++)
+		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().size();i++)
 		{
-			names.add(floors.get(i).getName()+", id: "+floors.get(i).getId());
+			names.add(MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(i).getName()+", id: "+MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(i).getId());
 		}
 		
 		floorList.getItems().clear();
@@ -401,11 +404,11 @@ public class Controller implements Initializable{
 		String name=(String) floorList.getSelectionModel().getSelectedItem();
 		Floor floor = new Floor(0,"",emptyRooms);
 		
-		for (int i=0;i<floors.size();i++)
+		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().size();i++)
 		{
-			if (name.equals(floors.get(i).getName()+", id: "+floors.get(i).getId()))
+			if (name.equals(MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(i).getName()+", id: "+MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(i).getId()))
             {
-				floor = floors.get(i);
+				floor = MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(i);
 				currentFloorIndex = i;
             }
 		}
@@ -419,9 +422,9 @@ public class Controller implements Initializable{
 		rooms = floor.getRooms();
 		List <String> names = new ArrayList<>();
 		
-		for (int i=0;i<rooms.size();i++)
+		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().size();i++)
 		{
-			names.add(rooms.get(i).getName()+", id: "+rooms.get(i).getId());
+			names.add(MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(i).getName()+", id: "+MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(i).getId());
 		}
 		roomList.getItems().clear();
 		roomList.getItems().addAll(names);
@@ -437,11 +440,11 @@ public class Controller implements Initializable{
                 new Float(1),
                 new Float(1));
 		
-		for (int i=0;i<rooms.size();i++)
+		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().size();i++)
 		{
-			if (name.equals(rooms.get(i).getName()+", id: "+rooms.get(i).getId()))
+			if (name.equals(MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(i).getName()+", id: "+MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(i).getId()))
             {
-				room = rooms.get(i);
+				room = MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(i);
 				currentRoomIndex = i;
             }
 		}
@@ -493,6 +496,19 @@ public class Controller implements Initializable{
 		roomList.getItems().addAll(names);
 		names.clear();
 	}
+	
+	@FXML
+	public void save()throws IOException, ClassNotFoundException {
+		
+		
+		
+		ObjectOutputStream out = new ObjectOutputStream(        
+                new FileOutputStream(("save.txt")));
+		
+		out.writeObject(MenuWindow.buildings);
+		out.close();
+	}
+	
 	
 	@FXML
 	public void deleteY() {

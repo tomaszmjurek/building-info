@@ -1,5 +1,7 @@
 package gryffindor.buildinginfo.models;
 
+import java.io.Serializable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +14,7 @@ import org.json.JSONObject;
  * a field light that is equal to power used to light the Room
  * @author Griffindor
  */
-public class Room extends Location {
+public class Room extends Location implements Serializable{
 
     private Float area;
     private Float volume;
