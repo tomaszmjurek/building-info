@@ -123,4 +123,23 @@ public class Building extends Location implements Serializable {
         }
         return sum;
     }
+
+    public String convertToYAML(){
+        String yaml = "";
+        for(Floor floor : this.floors){
+            yaml += "id: " + floor.getId() + "\n";
+            yaml += "name: " + floor.getName() + "\n";
+            yaml += "floors:\n";
+            for(Room room : floor.getRooms()){
+                yaml += "\tid: " + room.getId() + "\n";
+                yaml += "\tname: " + room.getName() + "\n";
+                yaml += "\tarea: " + room.getArea() + "\n";
+                yaml += "\tvolume: " + room.getVolume() + "\n";
+                yaml += "\theating: " + room.getHeating() + "\n";
+                yaml += "\tlight: " + room.getLight() + "\n";
+            }
+        }
+        return yaml;
+    }
+
 }
