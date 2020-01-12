@@ -3,6 +3,7 @@
 ![Build status](https://travis-ci.org/Dominos1234/building-info.svg?branch=develop)
 
 Rejestr produktu, sprintu, itd. jest [tutaj](https://docs.google.com/spreadsheets/d/1aDTQCKbAcoE8keDuq2KcZH5aJ1E5YINCDQJ0HzN18_k/edit?usp=sharing)
+
 Punktowanie sprintu #2 [formatka](https://docs.google.com/spreadsheets/d/1SjnSpxvapOiACIVtu05h164Pw2II1XiufaiFosTgg2w/edit?usp=sharing)
 
 Struktura danych:
