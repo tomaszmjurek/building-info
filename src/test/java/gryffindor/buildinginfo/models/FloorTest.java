@@ -5,10 +5,13 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class FloorTest {
 
@@ -64,6 +67,28 @@ class FloorTest {
 
         assertEquals(10, floor.getId());
         assertEquals(1, floor.getRooms().size());
+
+    }
+
+    @Test
+    void avgHeatingWithMock(){
+        Room mocked_room1 = mock(Room.class);
+        Room mocked_room2 = mock(Room.class);
+
+        when(mocked_room1.getArea()).thenReturn(new Float(1));
+        when(mocked_room2.getArea()).thenReturn(new Float(1));
+
+        ArrayList<Room> rooms = new ArrayList<>(
+                Arrays.asList(mocked_room1, mocked_room2)
+        );
+
+        Floor test_floor = new Floor(1, "Test_floor", rooms);
+        Float result = test_floor.getArea();
+
+        verify(mocked_room1, times(1)).getArea();
+        verify(mocked_room2, times(1)).getArea();
+
+        assertEquals(new Float(2), result);
 
     }
 
