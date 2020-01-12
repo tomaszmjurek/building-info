@@ -2,24 +2,16 @@ package gryffindor.buildinginfo.gui;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import gryffindor.buildinginfo.models.Building;
-import gryffindor.buildinginfo.models.Floor;
-import gryffindor.buildinginfo.models.Room;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
  
 
@@ -48,8 +40,8 @@ public class MenuWindow extends Application {
         }
         br.close();
         
-        System.out.println(buildings.get(0).getFloors());
-        System.out.println(buildings.get(1).getFloors());
+        System.out.println(buildings.get(0));
+        System.out.println(buildings.get(1));
     	
         Parent root = FXMLLoader.load(getClass().getResource("MenuWindow.fxml"));
         primaryStage.setTitle("Hello World!");

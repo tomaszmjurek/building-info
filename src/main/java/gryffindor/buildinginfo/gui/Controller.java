@@ -77,10 +77,6 @@ public class Controller implements Initializable{
 	
 	public ArrayList <VBox> fields = new ArrayList<>();
 	public ArrayList <Button> buttons = new ArrayList<>();
-	public ArrayList <Floor> floors = new ArrayList<>();
-	public ArrayList <Floor> emptyFloors = new ArrayList<>();
-	public ArrayList <Room> rooms = new ArrayList<>();
-	public ArrayList <Room> emptyRooms = new ArrayList<>();
 	public int currentBuildingIndex;
 	public int currentFloorIndex;
 	public int currentRoomIndex;
@@ -192,16 +188,15 @@ public class Controller implements Initializable{
 		
 		acceptNewFloor.setVisible(false);
 		
-		Floor floor = new Floor(0,"",emptyRooms);
+		Floor floor = new Floor(0,"",new ArrayList<>());
 		
 		floor.setName(a1.getText());
 		floor.setId(Integer.parseInt(a2.getText()));
 
 		MenuWindow.buildings.get(currentBuildingIndex).getFloors().add(floor);
 
-
 		floorList.getItems().clear();
-		floorList.getItems().add(floor.getName()+", id: "+floor.getId());
+		loadFloors();
 	}
 	@FXML
 	public void editFloor() {
@@ -218,8 +213,8 @@ public class Controller implements Initializable{
 		a1.setText("");
 		a2.setText("");
 		
-		a1.setPromptText(floors.get(currentFloorIndex).getName());
-		a2.setPromptText(Integer.toString(floors.get(currentFloorIndex).getId()));
+		a1.setPromptText(MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getName());
+		a2.setPromptText(Integer.toString(MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getId()));
 		
 		for(int i=0;i<buttons.size();i++)
 			buttons.get(i).setVisible(false);
@@ -238,16 +233,7 @@ public class Controller implements Initializable{
 		if(!a1.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).setName(a1.getText());
 		if(!a2.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).setId(Integer.parseInt(a2.getText()));
 		
-		List <String> names = new ArrayList<>();
-		
-		for (int i=0;i<floors.size();i++)
-		{
-			names.add(floors.get(i).getName()+", id: "+floors.get(i).getId());
-		}
-		
-		floorList.getItems().clear();
-		floorList.getItems().addAll(names);
-		
+		loadFloors();
 	}
 	
 	@FXML
@@ -303,7 +289,7 @@ public class Controller implements Initializable{
 		MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().add(room);
 		
 		
-		roomList.getItems().add(room.getName()+", id: "+room.getId());
+		loadRooms();
 	}
 	@FXML
 	public void editRoom() {
@@ -329,12 +315,12 @@ public class Controller implements Initializable{
 		a5.setText("");
 		a6.setText("");
 		
-		a1.setPromptText(rooms.get(currentRoomIndex).getName());
-		a2.setPromptText(Integer.toString(rooms.get(currentRoomIndex).getId()));
-		a3.setPromptText(Float.toString(rooms.get(currentRoomIndex).getLight()));
-		a4.setPromptText(Float.toString(rooms.get(currentRoomIndex).getHeating()));
-		a5.setPromptText(Float.toString(rooms.get(currentRoomIndex).getArea()));
-		a6.setPromptText(Float.toString(rooms.get(currentRoomIndex).getVolume()));
+		a1.setPromptText( MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).getName());
+		a2.setPromptText(Integer.toString( MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).getId()));
+		a3.setPromptText(Float.toString( MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).getLight()));
+		a4.setPromptText(Float.toString( MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).getHeating()));
+		a5.setPromptText(Float.toString( MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).getArea()));
+		a6.setPromptText(Float.toString( MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).getVolume()));
 	}
 	@FXML
 	public void editRoom2() throws IOException, ClassNotFoundException, NumberFormatException{
@@ -349,15 +335,7 @@ public class Controller implements Initializable{
 		if(!a5.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).setArea(Float.parseFloat(a5.getText()));
 		if(!a6.getText().equals("")) MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex).setVolume(Float.parseFloat(a6.getText()));
 		
-		List <String> names = new ArrayList<>();
-		
-		for (int i=0;i<floors.size();i++)
-		{
-			names.add(floors.get(i).getName()+", id: "+floors.get(i).getId());
-		}
-		
-		floorList.getItems().clear();
-		floorList.getItems().addAll(names);
+		loadRooms();
 	}
 	@FXML
 	public void deleteRoom() {
@@ -369,7 +347,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void selectBuilding() {
 		String name=(String) buildingList.getSelectionModel().getSelectedItem();
-		Building building = new Building(0,"",emptyFloors);
+		Building building = new Building(0,"",new ArrayList<>());
 		
 		for (int i=0;i<MenuWindow.buildings.size();i++)
 		{
@@ -386,7 +364,6 @@ public class Controller implements Initializable{
 		buildingLight.setText("Average Light: "+Float.toString(building.avgLight()));
 		
 		
-		floors = building.getFloors();
 		List <String> names = new ArrayList<>();
 		
 		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().size();i++)
@@ -402,7 +379,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void selectFloor() {
 		String name=(String) floorList.getSelectionModel().getSelectedItem();
-		Floor floor = new Floor(0,"",emptyRooms);
+		Floor floor = new Floor(0,"",new ArrayList<>());
 		
 		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().size();i++)
 		{
@@ -418,8 +395,6 @@ public class Controller implements Initializable{
 		floorHeating.setText("Average Heating: "+Float.toString(floor.avgHeating()));
 		floorLight.setText("Average Light: "+Float.toString(floor.avgLight()));
 		
-		
-		rooms = floor.getRooms();
 		List <String> names = new ArrayList<>();
 		
 		for (int i=0;i<MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().size();i++)
