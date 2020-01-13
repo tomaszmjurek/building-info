@@ -5,6 +5,8 @@ import gryffindor.buildinginfo.models.JSONToBuildingParser;
 import gryffindor.buildinginfo.models.Room;
 import gryffindor.buildinginfo.models.Floor;
 import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -335,4 +337,35 @@ public class Main {
 
 		return response;
 	}
+
+	@PostMapping("/rooms/exceedingHeating")
+	public Map<String, Object> roomsExceedingHeating(@RequestBody String json){
+        Map<String, Object> response = new HashMap<>();
+
+        ArrayList<Building> buildings = null;
+        Float threshhold = null;
+        try{
+			buildings = JSONToBuildingParser.getBuildings(json);
+			threshhold = new Float(new JSONObject(new JSONTokener(json)).getString("threshhold"));
+        } catch (JSONException e){
+        	e.printStackTrace();
+        }
+
+        ArrayList<Integer> rooms;
+
+        for(Building building : buildings) {
+			rooms = new ArrayList<>();
+			for (Floor floor : building.getFloors()) {
+				for (Room room : floor.getRooms()) {
+					if (room.getHeating() > threshhold) {
+						rooms.add(room.getId());
+					}
+				}
+			}
+			response.put(building.getId().toString(), rooms);
+		}
+
+        return response;
+        }
+
 }
