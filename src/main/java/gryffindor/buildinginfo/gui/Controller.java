@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -74,7 +75,7 @@ public class Controller implements Initializable{
 	@FXML
 	public TextField a1,a2,a3,a4,a5,a6;
 	@FXML
-	public TextField yaml;
+	public TextArea yaml;
 
 	
 	public ArrayList <VBox> fields = new ArrayList<>();

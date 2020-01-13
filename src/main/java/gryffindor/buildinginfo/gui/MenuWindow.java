@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
  
 
-
 public class MenuWindow extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -26,7 +25,7 @@ public class MenuWindow extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception {
 		
-    	ObjectInputStream in = new ObjectInputStream( 
+		ObjectInputStream in = new ObjectInputStream( 
                 new FileInputStream("save.txt"));
     	
     	
