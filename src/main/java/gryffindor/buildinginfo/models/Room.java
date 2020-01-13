@@ -1,5 +1,7 @@
 package gryffindor.buildinginfo.models;
 
+import java.io.Serializable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +14,7 @@ import org.json.JSONObject;
  * a field light that is equal to power used to light the Room
  * @author Griffindor
  */
-public class Room extends Location {
+public class Room extends Location implements Serializable{
 
     private Float area;
     private Float volume;
@@ -27,10 +29,10 @@ public class Room extends Location {
             name = (String) json.get("name");
         }
         
-        Float area = Float.valueOf(Double.toString((Double )json.get("area")));
-        Float volume = Float.valueOf(Double.toString((Double )json.get("volume")));
-        Float heating = Float.valueOf(Double.toString((Double )json.get("heating")));
-        Float light = Float.valueOf(Double.toString((Double )json.get("light")));
+        Float area = new Float(json.get("area").toString());
+        Float volume = new Float(json.get("volume").toString());
+        Float heating = new Float(json.get("heating").toString());
+        Float light = new Float(json.get("light").toString());
 
         return new Room(id, name, area, volume, heating, light);
     }

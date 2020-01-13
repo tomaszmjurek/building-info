@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * Every Floor is described by its own unique id and name
  * @author Griffindor
  */
-public class Floor extends Location {
+public class Floor extends Location implements Serializable {
 
     public static Floor readJSON(JSONObject json) throws JSONException {
         Integer id = (Integer) json.get("id");
@@ -34,7 +35,7 @@ public class Floor extends Location {
 
     private ArrayList<Room> rooms = new ArrayList<>();
 
-    public Floor(Integer id, String name) {
+    Floor(Integer id, String name) {
         super(id, name);
     }
 
@@ -51,6 +52,9 @@ public class Floor extends Location {
         return rooms;
     }
 
+    public void setRooms(ArrayList<Room> rooms) {
+        this.rooms = rooms;
+    }
     /**
      * Function getArea() calculates the total area of a floor
      * It sums areas of every room that the floor consists of
@@ -84,23 +88,15 @@ public class Floor extends Location {
     }
 
     /**
-     * Function getHeating() calculates the level of heating energy consumption
-     * It sums energy used to heat every room that the floor consists of and divides it by total area of a floor
+     * Function avgHeating() calculates the level of heating energy consumption
+     * It sums energy used to heat every room that the floor consists of and divides it by total volume of a floor
      * @return heating energy per m^3 as float
      */
     @Override
     public Float avgHeating() {
-        Float sum = 0.0f;
-        Float volume = 0.0f;
-
-        for(Room room : rooms) {
-            sum += room.avgHeating();
-            volume += room.getVolume();
-        }
-
-        return sum;
+        return this.getHeating() / this.getVolume();
     }
-    
+
     /**
      * Function avgLight() calculates the total lighting power used in the whole floor
      * It sums amounts of power used to light every room that our floor consists of and divides it by total area of the floor
@@ -108,15 +104,25 @@ public class Floor extends Location {
      */
     @Override
     public Float avgLight() {
-        Float sum = 0.0f;
-        Float area = 0.0f;
-
-        for(Room room : rooms) {
-            sum += room.avgLight();
-            area += room.getArea();
-            
-        }
-
-        return sum/area;
+        return this.getLight() / this.getArea();
     }
+
+    @Override
+    public Float getHeating(){
+        Float sum = 0.0f;
+        for(Room room : this.rooms){
+            sum += room.getHeating();
+        }
+        return sum;
+    }
+
+    @Override
+    public Float getLight(){
+        Float sum = 0.0f;
+        for(Room room : this.rooms){
+            sum += room.getLight();
+        }
+        return sum;
+    }
+
 }

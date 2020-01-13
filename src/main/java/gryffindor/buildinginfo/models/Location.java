@@ -1,12 +1,14 @@
 package gryffindor.buildinginfo.models;
 
+import java.io.Serializable;
+
 /**
  * Location is an abstract class
  * Classes Building, Floor and Room inherit from Location
  * Location has 2 fields - id and name
  * @author Griffindor
  */
-public abstract class Location {
+public abstract class Location implements Serializable{
 
     private Integer id;
     private String name;
@@ -20,6 +22,8 @@ public abstract class Location {
     abstract Float getVolume();
     abstract Float avgHeating();
     abstract Float avgLight();
+    abstract Float getHeating();
+    abstract Float getLight();
 
     /**
      * 
