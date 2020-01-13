@@ -6,9 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 class BuildingTest {
 
@@ -114,4 +117,140 @@ class BuildingTest {
     void avgLight() {
         assertEquals(new Float(130.0/40.0), this.building.avgLight());
     }
+
+    @Test
+    void getAreaWithMock() {
+        Floor mocked_floor1 = mock(Floor.class);
+        Floor mocked_floor2 = mock(Floor.class);
+
+        when(mocked_floor1.getArea()).thenReturn(new Float(1));
+        when(mocked_floor2.getArea()).thenReturn(new Float(1));
+
+        ArrayList<Floor> floors = new ArrayList<>(
+                Arrays.asList(mocked_floor1, mocked_floor2)
+        );
+
+        Building test_building = new Building(1, "Test_building", floors);
+        Float result = test_building.getArea();
+
+        verify(mocked_floor1, times(1)).getArea();
+        verify(mocked_floor2, times(1)).getArea();
+
+        assertEquals(new Float(2), result);
+    }
+
+    @Test
+    void getVolumeWithMock() {
+        Floor mocked_floor1 = mock(Floor.class);
+        Floor mocked_floor2 = mock(Floor.class);
+
+        when(mocked_floor1.getVolume()).thenReturn(new Float(1));
+        when(mocked_floor2.getVolume()).thenReturn(new Float(1));
+
+        ArrayList<Floor> floors = new ArrayList<>(
+                Arrays.asList(mocked_floor1, mocked_floor2)
+        );
+
+        Building test_building = new Building(1, "Test_building", floors);
+        Float result = test_building.getVolume();
+
+        verify(mocked_floor1, times(1)).getVolume();
+        verify(mocked_floor2, times(1)).getVolume();
+
+        assertEquals(new Float(2), result);
+    }
+
+    @Test
+    void avgHeatingWithMock() {
+        Floor mocked_floor1 = mock(Floor.class);
+        Floor mocked_floor2 = mock(Floor.class);
+
+        when(mocked_floor1.getVolume()).thenReturn(new Float(1));
+        when(mocked_floor2.getVolume()).thenReturn(new Float(1));
+        when(mocked_floor1.getHeating()).thenReturn(new Float(5));
+        when(mocked_floor2.getHeating()).thenReturn(new Float(5));
+
+        ArrayList<Floor> floors = new ArrayList<>(
+                Arrays.asList(mocked_floor1, mocked_floor2)
+        );
+
+        Building test_building = new Building(1, "Test_building", floors);
+        Float result = test_building.avgHeating();
+
+        verify(mocked_floor1, times(1)).getVolume();
+        verify(mocked_floor2, times(1)).getVolume();
+        verify(mocked_floor1, times(1)).getHeating();
+        verify(mocked_floor2, times(1)).getHeating();
+
+        assertEquals(new Float(5), result);
+    }
+
+    @Test
+    void avgLightWithMock() {
+        Floor mocked_floor1 = mock(Floor.class);
+        Floor mocked_floor2 = mock(Floor.class);
+
+        when(mocked_floor1.getArea()).thenReturn(new Float(1));
+        when(mocked_floor2.getArea()).thenReturn(new Float(1));
+        when(mocked_floor1.getLight()).thenReturn(new Float(5));
+        when(mocked_floor2.getLight()).thenReturn(new Float(5));
+
+        ArrayList<Floor> floors = new ArrayList<>(
+                Arrays.asList(mocked_floor1, mocked_floor2)
+        );
+
+        Building test_building = new Building(1, "Test_building", floors);
+        Float result = test_building.avgLight();
+
+        verify(mocked_floor1, times(1)).getArea();
+        verify(mocked_floor2, times(1)).getArea();
+        verify(mocked_floor1, times(1)).getLight();
+        verify(mocked_floor2, times(1)).getLight();
+
+        assertEquals(new Float(5), result);
+    }
+
+    @Test
+    void getHeatingWithMock(){
+        Floor mocked_floor1 = mock(Floor.class);
+        Floor mocked_floor2 = mock(Floor.class);
+
+        when(mocked_floor1.getHeating()).thenReturn(new Float(1));
+        when(mocked_floor2.getHeating()).thenReturn(new Float(1));
+
+        ArrayList<Floor> floors = new ArrayList<>(
+                Arrays.asList(mocked_floor1, mocked_floor2)
+        );
+
+        Building test_building = new Building(1, "Test_building", floors);
+        Float result = test_building.getHeating();
+
+        verify(mocked_floor1, times(1)).getHeating();
+        verify(mocked_floor2, times(1)).getHeating();
+
+        assertEquals(new Float(2), result);
+    }
+
+    @Test
+    void getLightWithMock(){
+        Floor mocked_floor1 = mock(Floor.class);
+        Floor mocked_floor2 = mock(Floor.class);
+
+        when(mocked_floor1.getLight()).thenReturn(new Float(1));
+        when(mocked_floor2.getLight()).thenReturn(new Float(1));
+
+        ArrayList<Floor> floors = new ArrayList<>(
+                Arrays.asList(mocked_floor1, mocked_floor2)
+        );
+
+        Building test_building = new Building(1, "Test_building", floors);
+        Float result = test_building.getLight();
+
+        verify(mocked_floor1, times(1)).getLight();
+        verify(mocked_floor2, times(1)).getLight();
+
+        assertEquals(new Float(2), result);
+    }
+
+    
 }
