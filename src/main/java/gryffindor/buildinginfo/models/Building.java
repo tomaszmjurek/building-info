@@ -139,16 +139,16 @@ public class Building extends Location implements Serializable {
     public String convertToYAML(){
         String yaml = "";
         for(Floor floor : this.floors){
-            yaml += "id: " + floor.getId() + "\n";
-            yaml += "name: " + floor.getName() + "\n";
-            yaml += "floors:\n";
+            yaml += "- " + floor.getId() + ":\n";
+            yaml += "\tname: " + floor.getName() + "\n";
+            yaml += "\trooms:\n";
             for(Room room : floor.getRooms()){
-                yaml += "\tid: " + room.getId() + "\n";
-                yaml += "\tname: " + room.getName() + "\n";
-                yaml += "\tarea: " + room.getArea() + "\n";
-                yaml += "\tvolume: " + room.getVolume() + "\n";
-                yaml += "\theating: " + room.getHeating() + "\n";
-                yaml += "\tlight: " + room.getLight() + "\n";
+                yaml += "\t\t- " + room.getId() + ":\n";
+                yaml += "\t\t\tname: " + room.getName() + "\n";
+                yaml += "\t\t\tarea: " + room.getArea() + "\n";
+                yaml += "\t\t\tvolume: " + room.getVolume() + "\n";
+                yaml += "\t\t\theating: " + room.getHeating() + "\n";
+                yaml += "\t\t\tlight: " + room.getLight() + "\n";
             }
         }
         return yaml;
