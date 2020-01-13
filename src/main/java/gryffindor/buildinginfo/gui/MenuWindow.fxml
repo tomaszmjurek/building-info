@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="688.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gryffindor.buildinginfo.gui.Controller">
+<AnchorPane prefHeight="756.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gryffindor.buildinginfo.gui.Controller">
    <children>
       <VBox fx:id="buildingBox" layoutX="182.0" layoutY="14.0" prefHeight="410.0" prefWidth="170.0" spacing="15.0" visible="false">
          <children>
@@ -54,6 +55,7 @@
          <children>
             <ListView fx:id="buildingList" onMouseClicked="#selectBuilding" prefHeight="249.0" prefWidth="139.0" />
             <Button fx:id="newBuilding" mnemonicParsing="false" onAction="#newBuilding" prefHeight="25.0" prefWidth="145.0" text="New Building" />
+            <Button mnemonicParsing="false" onAction="#yaml" prefHeight="25.0" prefWidth="149.0" text="Create yaml for Building" />
             <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="149.0" text="Save current state" />
          </children>
       </VBox>
@@ -129,5 +131,6 @@
             </VBox>
          </children>
       </HBox>
+      <TextArea fx:id="yaml" layoutX="11.0" layoutY="454.0" prefHeight="294.0" prefWidth="807.0" visible="false" />
    </children>
 </AnchorPane>
