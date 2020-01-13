@@ -71,7 +71,7 @@ class FloorTest {
     }
 
     @Test
-    void avgHeatingWithMock(){
+    void getAreaWithMock() {
         Room mocked_room1 = mock(Room.class);
         Room mocked_room2 = mock(Room.class);
 
@@ -91,6 +91,78 @@ class FloorTest {
         assertEquals(new Float(2), result);
 
     }
+
+    @Test
+    void getVolumeWithMock(){
+        Room mocked_room1 = mock(Room.class);
+        Room mocked_room2 = mock(Room.class);
+
+        when(mocked_room1.getVolume()).thenReturn(new Float(5));
+        when(mocked_room2.getVolume()).thenReturn(new Float(5));
+
+        ArrayList<Room> rooms = new ArrayList<>(
+                Arrays.asList(mocked_room1, mocked_room2)
+        );
+
+        Floor test_floor = new Floor(1, "Test_floor", rooms);
+        Float result = test_floor.getVolume();
+
+        verify(mocked_room1, times(1)).getVolume();
+        verify(mocked_room2, times(1)).getVolume();
+
+        assertEquals(new Float(10), result);
+    }
+
+    @Test
+    void getAvgHeatingWithMock(){
+        Room mocked_room1 = mock(Room.class);
+        Room mocked_room2 = mock(Room.class);
+
+        when(mocked_room1.getVolume()).thenReturn(new Float(1));
+        when(mocked_room2.getVolume()).thenReturn(new Float(1));
+        when(mocked_room1.getHeating()).thenReturn(new Float(5));
+        when(mocked_room2.getHeating()).thenReturn(new Float(5));
+
+        ArrayList<Room> rooms = new ArrayList<>(
+                Arrays.asList(mocked_room1, mocked_room2)
+        );
+
+        Floor test_floor = new Floor(1, "Test_floor", rooms);
+        Float result = test_floor.avgHeating();
+
+        verify(mocked_room1, times(1)).getVolume();
+        verify(mocked_room2, times(1)).getVolume();
+        verify(mocked_room1, times(1)).getHeating();
+        verify(mocked_room2, times(1)).getHeating();
+
+        assertEquals(new Float(5), result);
+    }
+
+    @Test
+    void getAvgLightWithMock(){
+        Room mocked_room1 = mock(Room.class);
+        Room mocked_room2 = mock(Room.class);
+
+        when(mocked_room1.getArea()).thenReturn(new Float(1));
+        when(mocked_room2.getArea()).thenReturn(new Float(1));
+        when(mocked_room1.getLight()).thenReturn(new Float(5));
+        when(mocked_room2.getLight()).thenReturn(new Float(5));
+
+        ArrayList<Room> rooms = new ArrayList<>(
+                Arrays.asList(mocked_room1, mocked_room2)
+        );
+
+        Floor test_floor = new Floor(1, "Test_floor", rooms);
+        Float result = test_floor.avgLight();
+
+        verify(mocked_room1, times(1)).getArea();
+        verify(mocked_room2, times(1)).getArea();
+        verify(mocked_room1, times(1)).getArea();
+        verify(mocked_room2, times(1)).getArea();
+
+        assertEquals(new Float(5), result);
+    }
+
 
     @Test
     void getArea(){
