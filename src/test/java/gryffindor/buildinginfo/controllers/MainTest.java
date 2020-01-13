@@ -155,4 +155,14 @@ class MainTest {
                 .andDo(print())
                 .andExpect(content().json("{'heating': 1.0}"));
     }
+
+    @Test
+    void roomsExceedingHeating() throws Exception {
+        this.json.put("threshhold", 5);
+
+        this.mockMvc.perform(post("/rooms/exceedingHeating")
+                .content(this.json.toString()))
+                .andDo(print()).
+                andExpect(content().json("{'20': [3, 4]}"));
+    }
 }
