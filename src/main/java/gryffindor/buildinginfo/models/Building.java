@@ -87,7 +87,7 @@ public class Building extends Location implements Serializable {
     }
 
     /**
-     * Function avgHeating() calculates the amount of enery used to heat the whole building
+     * Function avgHeating() calculates the amount of energy used to heat the whole building
      * It sums amounts of enery used to heat every floor that our building consists of and divides it by total area of a building
      * @return heating energy per m^3 as float
      */
@@ -106,6 +106,10 @@ public class Building extends Location implements Serializable {
         return this.getLight() / this.getArea();
     }
 
+    /**
+     * A function that sums the total amount of energy used to heat the whole building
+     * @return heating energy
+     */
     @Override
     public Float getHeating(){
         Float sum = 0.0f;
@@ -115,6 +119,10 @@ public class Building extends Location implements Serializable {
         return sum;
     }
 
+    /**
+     * A function that sums the total amount of light used to light up the building
+     * @return amount of light
+     */
     @Override
     public Float getLight(){
         Float sum = 0.0f;
@@ -122,5 +130,27 @@ public class Building extends Location implements Serializable {
             sum += floor.getLight();
         }
         return sum;
+    }
+    
+    /**
+     * A function that creates a yaml for the building
+     * @return yaml
+     */
+    public String convertToYAML(){
+        String yaml = "";
+        for(Floor floor : this.floors){
+            yaml += "id: " + floor.getId() + "\n";
+            yaml += "name: " + floor.getName() + "\n";
+            yaml += "floors:\n";
+            for(Room room : floor.getRooms()){
+                yaml += "\tid: " + room.getId() + "\n";
+                yaml += "\tname: " + room.getName() + "\n";
+                yaml += "\tarea: " + room.getArea() + "\n";
+                yaml += "\tvolume: " + room.getVolume() + "\n";
+                yaml += "\theating: " + room.getHeating() + "\n";
+                yaml += "\tlight: " + room.getLight() + "\n";
+            }
+        }
+        return yaml;
     }
 }

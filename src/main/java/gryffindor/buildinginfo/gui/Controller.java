@@ -73,6 +73,8 @@ public class Controller implements Initializable{
 	public Label q1,q2,q3,q4,q5,q6;
 	@FXML
 	public TextField a1,a2,a3,a4,a5,a6;
+	@FXML
+	public TextField yaml;
 
 	
 	public ArrayList <VBox> fields = new ArrayList<>();
@@ -85,12 +87,22 @@ public class Controller implements Initializable{
 	public Building deleteB = null;
 	
 	
-	
+	@FXML
+	public void yaml() {
+		for(int i=0;i<fields.size();i++)
+			fields.get(i).setVisible(false);
+		for(int i=0;i<buttons.size();i++)
+			buttons.get(i).setVisible(false);
+		
+		yaml.setVisible(true);
+		yaml.setText(MenuWindow.buildings.get(currentBuildingIndex).convertToYAML());
+	}
 	@FXML
 	public void newBuilding() {
 		
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(false);
+		yaml.setVisible(false);
 		
 		v1.setVisible(true);
 		v2.setVisible(true);
@@ -126,6 +138,8 @@ public class Controller implements Initializable{
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(false);
 		
+		yaml.setVisible(false);
+		
 		v1.setVisible(true);
 		v2.setVisible(true);
 		
@@ -157,6 +171,7 @@ public class Controller implements Initializable{
 	}
 	@FXML
 	public void deleteBuilding() {
+		yaml.setVisible(false);
 		deleteV.setVisible(true);
 		deleteB = MenuWindow.buildings.get(currentBuildingIndex);
 		delete.setText("Do you really want to delete current Building: "+deleteB.getName()+"?");
@@ -165,6 +180,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void newFloor() {
 		
+		yaml.setVisible(false);
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(false);
 		
@@ -201,6 +217,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void editFloor() {
 		
+		yaml.setVisible(false);
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(false);
 		
@@ -238,6 +255,8 @@ public class Controller implements Initializable{
 	
 	@FXML
 	public void deleteFloor() {
+		
+		yaml.setVisible(false);
 		deleteV.setVisible(true);
 		deleteF = MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex);
 		delete.setText("Do you really want to delete current Floor: "+deleteF.getName()+"?");
@@ -245,6 +264,8 @@ public class Controller implements Initializable{
 	
 	@FXML
 	public void newRoom() {
+		
+		yaml.setVisible(false);
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(true);
 		
@@ -294,6 +315,7 @@ public class Controller implements Initializable{
 	@FXML
 	public void editRoom() {
 		
+		yaml.setVisible(false);
 		for(int i=0;i<fields.size();i++)
 			fields.get(i).setVisible(true);
 		
@@ -339,6 +361,8 @@ public class Controller implements Initializable{
 	}
 	@FXML
 	public void deleteRoom() {
+		
+		yaml.setVisible(false);
 		deleteV.setVisible(true);
 		deleteR = MenuWindow.buildings.get(currentBuildingIndex).getFloors().get(currentFloorIndex).getRooms().get(currentRoomIndex);
 		delete.setText("Do you really want to delete current Room: "+deleteR.getName()+"?");

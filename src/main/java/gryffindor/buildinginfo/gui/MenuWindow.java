@@ -25,11 +25,11 @@ public class MenuWindow extends Application {
     
 	@Override
     public void start(Stage primaryStage) throws Exception {
-    	
-		System.out.println(System.getProperty("user.dir"));
+		
     	ObjectInputStream in = new ObjectInputStream( 
                 new FileInputStream("save.txt"));
-        
+    	
+    	
     	BufferedReader br = new BufferedReader(new FileReader(("save.txt")));     
         if (br.readLine() == null) {
         	in.close(); 
@@ -40,11 +40,9 @@ public class MenuWindow extends Application {
         }
         br.close();
         
-        System.out.println(buildings.get(0));
-        System.out.println(buildings.get(1));
     	
         Parent root = FXMLLoader.load(getClass().getResource("MenuWindow.fxml"));
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Building-info!");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
         
