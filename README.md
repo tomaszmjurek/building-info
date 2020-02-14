@@ -6,7 +6,7 @@ Rejestr produktu, sprintu, itd. jest [tutaj](https://docs.google.com/spreadsheet
 
 Punktowanie sprintu #2 [formatka](https://docs.google.com/spreadsheets/d/1SjnSpxvapOiACIVtu05h164Pw2II1XiufaiFosTgg2w/edit?usp=sharing)
 
-Struktura danych:
+## Struktura danych:
 * Lokacja to budynek, poziom, lub pomieszczenie
 * Budynek może składać się z poziomów a te z pomieszczeń
 * Każda lokalizacja jest charakteryzowana przez:
@@ -18,7 +18,7 @@ Struktura danych:
    * heating - poziom zużycia energii ogrzewania (float)
    * light – łączna moc oświetlenia
 
-## Request JSON Structure
+## Exemplary request JSON Structure
 
 ```json
 {
@@ -84,3 +84,13 @@ Struktura danych:
   ]
 }
 ```
+
+## Built using
+* Java 11
+* IntelliJ IDEA 2019.2.4
+* Travis CI
+* Apache Maven
+* Spring Framework
+* Mockito
+* JUnit
+* SCRUM
