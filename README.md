@@ -94,3 +94,9 @@ Punktowanie sprintu #2 [formatka](https://docs.google.com/spreadsheets/d/1SjnSpx
 * Mockito
 * JUnit
 * SCRUM
+
+## Authors
+* **Aleksy Królczyk** - [aleksykrolczyk](https://github.com/aleksykrolczyk)
+* **Tomasz Jurek** - [tomaszmjurek](https://github.com/tomaszmjurek)
+* **Michał Cichy** - [michaladamcichy](https://github.com/michaladamcichy)
+* **Dominik Stachowiak** - [Dominos1234](https://github.com/Dominos1234)
